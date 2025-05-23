@@ -1,0 +1,89 @@
+{
+  "internationalization": {
+    "locales": [
+      "en",
+      "hi-IN"
+    ],
+    "requiredLocales": [],
+    "strictMode": "inclusive",
+    "defaultLocale": "en"
+  },
+  "middleware": {
+    "headerName": "x-intlayer-locale",
+    "cookieName": "INTLAYER_LOCALE",
+    "prefixDefault": false,
+    "basePath": "",
+    "serverSetCookie": "always",
+    "noPrefix": false
+  },
+  "content": {
+    "fileExtensions": [
+      ".content.ts",
+      ".content.js",
+      ".content.cjs",
+      ".content.cjx",
+      ".content.mjs",
+      ".content.mjx",
+      ".content.json",
+      ".content.tsx",
+      ".content.jsx"
+    ],
+    "baseDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype",
+    "excludedPath": [
+      "node_modules"
+    ],
+    "watch": true,
+    "contentDir": [
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src"
+    ],
+    "dictionariesDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/dictionary",
+    "moduleAugmentationDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/types",
+    "dictionaryOutput": [
+      "intlayer"
+    ],
+    "unmergedDictionariesDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/unmerged_dictionary",
+    "i18nextResourcesDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/i18next_resources",
+    "reactIntlMessagesDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/intl_messages",
+    "typesDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/types",
+    "mainDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/main",
+    "configDir": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/config",
+    "watchedFilesPattern": [
+      "/**/*.content.ts",
+      "/**/*.content.js",
+      "/**/*.content.cjs",
+      "/**/*.content.cjx",
+      "/**/*.content.mjs",
+      "/**/*.content.mjx",
+      "/**/*.content.json",
+      "/**/*.content.tsx",
+      "/**/*.content.jsx"
+    ],
+    "watchedFilesPatternWithPath": [
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.ts",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.js",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.cjs",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.cjx",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.mjs",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.mjx",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.json",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.tsx",
+      "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/**/*.content.jsx"
+    ],
+    "outputFilesPatternWithPath": "/Users/jatinrao/Assignments/concentric-analytics-prototype/.intlayer/dictionary/**/*.json"
+  },
+  "editor": {
+    "applicationURL": "",
+    "editorURL": "http://localhost:8000",
+    "cmsURL": "https://intlayer.org",
+    "backendURL": "https://back.intlayer.org",
+    "port": 8000,
+    "enabled": true,
+    "dictionaryPriorityStrategy": "local_first",
+    "hotReload": false
+  },
+  "log": {
+    "mode": "default",
+    "prefix": "\u001b[90m[intlayer] \u001b[0m"
+  },
+  "ai": {}
+}
