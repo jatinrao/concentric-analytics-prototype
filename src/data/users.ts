@@ -1,4 +1,3 @@
-import { LocalesValues } from "intlayer";
 import { Email } from "../../tenant";
 
 export interface User {
@@ -9,7 +8,7 @@ export interface User {
   tenant:string;
   email?:Email;
   profileImage:string;
-  defaultLocale?:LocalesValues;
+  defaultLocale?:string;
 }
 
 export const users: User[] = [

@@ -2,14 +2,9 @@
 import { useEffect, useState } from "react";
 import { User } from "@/data/users";
 import { useRouter } from "next/navigation";
-import { Locales } from "intlayer";
+// import { Locales } from "intlayer";
 
-export default function Header({
-  tenant,
-}: {
-  tenant: string;
-  locale: Locales;
-}) {
+export default function Header({ tenant }: { tenant: string; locale: string }) {
   const [user, setUser] = useState<User>();
   const router = useRouter();
   useEffect(() => {

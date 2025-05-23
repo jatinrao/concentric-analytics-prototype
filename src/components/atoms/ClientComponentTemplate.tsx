@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect, type FC } from "react";
-import { useIntlayer } from "next-intlayer";
+// import { useIntlayer } from "next-intlayer";
 
 export const ClientComponentTemplate: FC = () => {
-  const content = useIntlayer("atoms-template");
+  //   const content = useIntlayer("atoms-template");
   useEffect(() => {
     const fetchUserDetails = async () => {
       const token = sessionStorage.getItem("token");
@@ -25,7 +25,7 @@ export const ClientComponentTemplate: FC = () => {
 
   return (
     <div>
-      <h2>{content.title} </h2>
+      <h2>{"content.title"} </h2>
       {/* <p>{content.content}</p> */}
     </div>
   );

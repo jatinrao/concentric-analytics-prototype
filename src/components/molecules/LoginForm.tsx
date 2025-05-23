@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { formatUrl } from "../utils";
-import { useIntlayer } from "next-intlayer";
+// import { useIntlayer } from "next-intlayer";
 
 type Params = {
   tenant: string;
@@ -11,7 +11,7 @@ type Params = {
 
 function LoginForm(params: Params) {
   const { tenant, locale } = params;
-  const content = useIntlayer("root");
+  //   const content = useIntlayer("root");
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   console.log("params:", tenant, locale);
@@ -42,7 +42,7 @@ function LoginForm(params: Params) {
 
   return (
     <section>
-      <h3 className="text-black m-auto">{content.getStarted.main}</h3>
+      <h3 className="text-black m-auto">{"content.getStarted.main"}</h3>
       <form onSubmit={handleSubmit}>
         <label>
           <input

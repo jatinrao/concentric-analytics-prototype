@@ -1,20 +1,32 @@
 "use client";
 
 import { getLocaleName, getLocalizedUrl } from "intlayer";
-import { useLocale } from "next-intlayer";
 import Link from "next/link";
 import { formatUrl } from "../utils";
 import { useRouter } from "next/navigation";
 
+// Commented out the problematic import
+// import { useLocale } from 'intlayer';
+
+// Add a temporary placeholder implementation
+// const useLocale = () => {
+//   return {
+//     locale: "en",
+//     setLocale: (locale: string) => {
+//       console.log("Would set locale to:", locale);
+//     },
+//   };
+// };
+
 export const LocaleSwitcher = ({ tenant }: { tenant: string }) => {
-  const { locale, pathWithoutLocale, availableLocales, setLocale } =
-    useLocale();
-  const router = useRouter();
+  //   const { locale, setLocale } =
+  //     useLocale();
+  //   const router = useRouter();
 
   return (
     <div>
-      <button popoverTarget="localePopover">{getLocaleName(locale)}</button>
-      <div id="localePopover" popover="auto">
+      {/* <button popoverTarget="localePopover">{getLocaleName(locale)}</button> */}
+      {/* <div id="localePopover" popover="auto">
         {availableLocales.map((localeItem) => (
           <Link
             href={getLocalizedUrl(pathWithoutLocale, localeItem)}
@@ -29,7 +41,7 @@ export const LocaleSwitcher = ({ tenant }: { tenant: string }) => {
             {localeItem}
           </Link>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

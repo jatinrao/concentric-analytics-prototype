@@ -1,27 +1,23 @@
-// middleware.ts (in your root directory)
+// middleware.ts (in project root)
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-
-  // If accessing root, redirect to default tenant/locale
-  if (pathname === '/') {
-    return NextResponse.redirect(new URL('/orgA/en-US', request.url));
+  console.log('Middleware running for:', request.url);
+  
+  try {
+    // Your middleware logic here
+    return NextResponse.next();
+  } catch (error) {
+    console.error('Middleware error:', error);
+    return NextResponse.next();
   }
-
-  // If accessing just tenant without locale, redirect to default locale
-  const pathSegments = pathname.split('/').filter(Boolean);
-  if (pathSegments.length === 1) {
-    const tenant = pathSegments[0];
-    return NextResponse.redirect(new URL(`/${tenant}/en-US`, request.url));
-  }
-
-  return NextResponse.next();
 }
 
+// Optional: limit paths middleware runs on
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*|manifest.json).*)',
+    '/orgA/:path*',
+    // Add other paths as needed
   ],
 };

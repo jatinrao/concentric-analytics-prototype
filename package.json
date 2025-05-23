@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -28,6 +28,7 @@
     "eslint-config-next": "15.3.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.0.0",
+    "null-loader": "^4.0.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

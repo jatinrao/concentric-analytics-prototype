@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Tenant } from "../../../tenant";
 import { useRouter } from "next/navigation";
 import { formatUrl } from "../utils";
-import { Locales } from "intlayer";
+// import { Locales } from "intlayer";
 
 export const TenantDropdown = ({
   selected,
@@ -11,7 +11,7 @@ export const TenantDropdown = ({
   tenantList,
 }: {
   selected: string;
-  locale: Locales;
+  locale: string;
   tenantList: Tenant[];
 }) => {
   //   const content = useIntlayer("molecules");
