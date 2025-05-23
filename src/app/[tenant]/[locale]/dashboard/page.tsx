@@ -33,16 +33,6 @@ const DynamicUsers = dynamic(() => import("@/components/molecules/Users"), {
   ),
 });
 
-// const PageContent: FC = () => {
-//   const content = useIntlayer("root");
-
-//   return (
-//     <>
-//       <p>{content.getStarted.main}</p>
-//       <code>{content.getStarted.pageLink}</code>
-//     </>
-//   );
-// };
 type DashboardPageProps = {
   params: {
     tenant: string;
