@@ -11,10 +11,10 @@ function getTenantId():string {
 }
 let configPath:string
 if(process.env.NODE_ENV == "production"){
-    configPath = "https://concentric-analytics-prototype-fwcc.vercel.app/tenant.json"
+    configPath = path.resolve(process.cwd(), 'public/tenant.json')
 }
 else{
-configPath = path.resolve(process.cwd(), 'public/tenant.json');
+configPath = path.resolve(process.cwd(), '/tenant.json');
 }
 
 let cachedConfig: Record<string, Tenant> = {};
