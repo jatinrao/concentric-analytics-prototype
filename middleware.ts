@@ -1,16 +1,12 @@
-// middleware.ts (in project root)
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
-  // Return immediately without any logic that could fail
+  // Just log without modifying the request
+  console.log('Accessing:', request.nextUrl.pathname);
   return NextResponse.next();
 }
 
-// Optional: Start with a very limited matcher
+// Start with minimal matcher
 export const config = {
-  matcher: [
-    // Start with a single test path
-    '/test-middleware'
-  ],
+  matcher: [],  // Empty for now to confirm routing works without middleware
 };
