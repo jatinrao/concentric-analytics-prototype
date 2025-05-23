@@ -1,14 +1,12 @@
 {
-  "redirects": [
+  "version": 2,
+  "routes": [
     {
-      "source": "/",
-      "destination": "/orgA/en-US",
-      "permanent": false
-    },
-    {
-      "source": "/:tenant",
-      "destination": "/:tenant/en-US",
-      "permanent": false
+      "src": "/(.*)",
+      "dest": "/$1"
     }
-  ]
+  ],
+  "buildCommand": "next build",
+  "devCommand": "next dev",
+  "framework": "nextjs"
 }
