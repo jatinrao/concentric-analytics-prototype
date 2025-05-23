@@ -105,10 +105,3 @@ export default async function Home() {
     </div>
   );
 }
-
-// export const getServerSideProps = (async () => {
-//   // Fetch data from external API
-//   const tenants: Record<string, Tenant> = await loadTenantMap();
-//   console.log("tenants-debug", tenants);
-//   return { props: { tenants } };
-// }) satisfies GetServerSideProps<{ tenants: Record<string, Tenant> }>;

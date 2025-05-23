@@ -1,6 +1,6 @@
 {
     "orgA": {
-    "tenantId":"",
+    "tenantId":"orgA",
     "tenantUserName":"org-a",
     "tenantName":"Organisation A",
     "defaultLocale":"en-US",
@@ -15,7 +15,7 @@
     "features":["charts"]
 },
  "orgB": {
-    "tenantId":"",
+    "tenantId":"orgB",
     "tenantUserName":"org-b",
     "tenantName":"Organisation B",
     "defaultLocale":"en-US",
