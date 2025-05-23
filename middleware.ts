@@ -1,3 +1,4 @@
+// middleware.ts (in your root directory)
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
@@ -10,8 +11,9 @@ export function middleware(request: NextRequest) {
   }
 
   // If accessing just tenant without locale, redirect to default locale
-  if (pathname.match(/^\/[^\/]+\/?$/)) {
-    const tenant = pathname.replace('/', '').replace('/', '');
+  const pathSegments = pathname.split('/').filter(Boolean);
+  if (pathSegments.length === 1) {
+    const tenant = pathSegments[0];
     return NextResponse.redirect(new URL(`/${tenant}/en-US`, request.url));
   }
 
@@ -20,6 +22,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|.*\\..*|manifest.json).*)',
   ],
 };
