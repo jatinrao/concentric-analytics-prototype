@@ -4,6 +4,7 @@ import path from 'path';
 import { statSync } from 'fs';
 import { Tenant } from './tenant';
 import { v4 as uuidv4,  } from 'uuid';
+import Error from 'next/error';
 
 
 function getTenantId():string {
@@ -31,7 +32,7 @@ try {
   const exists = statSync(configPath);
   console.log("  config file found:", exists.isFile());
 } catch (err) {
-  console.error("  🔥 File not found or error:", err.message);
+  console.error("  🔥 File not found or error:", err);
 }
     const { mtimeMs } = statSync(configPath);
 
