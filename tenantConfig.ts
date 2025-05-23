@@ -9,12 +9,12 @@ import { v4 as uuidv4,  } from 'uuid';
 function getTenantId():string {
     return uuidv4();
 }
-let configPath:string
+let configPath:string;
 if(process.env.NODE_ENV == "production"){
-    configPath = path.resolve(process.cwd(), 'public/tenant.json')
+    configPath = path.resolve(process.cwd(), 'public/tenant.json');
 }
 else{
-configPath = path.resolve(process.cwd(), '/tenant.json');
+ configPath = path.resolve(process.cwd(), 'public/tenant.json');
 }
 
 let cachedConfig: Record<string, Tenant> = {};
