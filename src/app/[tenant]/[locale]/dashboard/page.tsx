@@ -33,9 +33,9 @@ const DynamicUsers = dynamic(() => import("@/components/molecules/Users"), {
   ),
 });
 
-export type PageProps = {
-  params: Promise<{ [key: string]: string }>;
-};
+// export type PageProps = {
+//   params: Promise<{ [key: string]: string }>;
+// };
 
 const DashboardPage = async ({
   params,

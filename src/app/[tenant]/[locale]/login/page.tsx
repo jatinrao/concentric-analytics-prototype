@@ -1,4 +1,3 @@
-// src/app/[tenant]/[locale]/login/page.tsx
 import { loadTenantList, loadTenantMap } from "../../../../../tenantConfig";
 import { Tenant } from "../../../../../tenant";
 import LoginForm from "@/components/molecules/LoginForm";
@@ -8,15 +7,11 @@ import { Suspense } from "react";
 import LocaleSwitcherWrapper from "@/components/atoms/LocaleSwitcherWrapper";
 import { getTranslation } from "@/components/translators/LoginTranslator";
 
-type LoginPageProps = {
-  params: {
-    tenant: string;
-    locale: string;
-  };
-};
-
+interface LoginPageProps {
+  params: Promise<{ tenant: string; locale: string }>;
+}
 export default async function LoginPage({ params }: LoginPageProps) {
-  const { tenant, locale } = params;
+  const { tenant, locale } = await params;
   const tenants: Record<string, Tenant> = await loadTenantMap();
   const tenantList: Tenant[] = await loadTenantList();
 
@@ -48,8 +43,8 @@ export default async function LoginPage({ params }: LoginPageProps) {
         />
       </Suspense>
 
-      <div className="@xs:w-full w-[320px] h-fit flex flex-col mx-auto border-4 border-primary rounded-elem py-6 px-6 ">
-        <h3 className="text-black m-auto mb-6">{translations.title}</h3>
+      <div className="@xs:w-full w-[320px] h-fit flex flex-col mx-auto border-4 border-primary rounded-elem py-6 px-6">
+        <h3 className="text-black m-auto">{translations.title}</h3>
         <TenantDropdown
           selected={tenant}
           locale={locale}
