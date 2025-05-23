@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
-import { withIntlayer } from "next-intlayer/server";
+// import { withIntlayer } from "next-intlayer/server";
 
 const nextConfig: NextConfig = {
-
+  // Add explicit runtime configuration
+  experimental: {
+    serverComponentsExternalPackages: ['intlayer', 'next-intlayer']
+  }
 };
 
-export default withIntlayer(nextConfig);
+// Temporarily disable Intlayer wrapper for debugging
+export default nextConfig;
+// export default withIntlayer(nextConfig);
