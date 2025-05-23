@@ -39,6 +39,6 @@ export async function loadTenantMap(): Promise<Record<string, Tenant>> {
 
 export async function loadTenantList(): Promise<Tenant[]> {
   const map = await loadTenantMap();
-  return Object.values(map).map((tenant:Tenant) => ({...tenant,id:getTenantId( tenant.tenantId)}));
+  return Object.values(map).map((tenant:Tenant) => ({...tenant,id:getTenantId()}));
 }
 
