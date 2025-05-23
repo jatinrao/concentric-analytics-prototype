@@ -2,7 +2,7 @@
   {
     "key": "page",
     "content": {
-      "title": "tenant",
+      "title": "tenant-atoms",
       "appName": {
         "nodeType": "translation",
         "translation": {
@@ -27,6 +27,6 @@
         }
       }
     },
-    "filePath": "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/app/[tenant]/[locale]/root.content.ts"
+    "filePath": "src/components/molecules/login.content.ts"
   }
 ]

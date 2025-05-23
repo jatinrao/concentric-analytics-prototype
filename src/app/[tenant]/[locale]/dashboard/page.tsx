@@ -1,64 +1,83 @@
-"use client";
-import { useEffect, useState } from "react";
-import Link from "next/link";
-import { User } from "@/data/users";
-import { useRouter } from "next/navigation";
+import { IntlayerServerProvider } from "next-intlayer/server";
+import Header from "@/components/molecules/Header";
+import { loadTenantMap } from "../../../../../tenantConfig";
+import { Tenant } from "../../../../../tenant";
+import { Card } from "@/components/atoms/Card";
+import dynamic from "next/dynamic";
+import { Locales } from "intlayer";
+import { PageProps } from "../../../../../.next/types/app/layout";
 
-export default function Home() {
-  const [user, setUser] = useState<User>(null);
-  const router = useRouter();
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-
-    if (token) {
-      try {
-        async function fetchUser() {
-          const res = await fetch("/api/user", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          const data = await res.json();
-          console.log("debug", data);
-          if (data.code == 200) setUser(data.user);
-          else if (data.code == 401) {
-            sessionStorage.removeItem("token");
-            //TO_DO clean up this code
-            router.push("/orgA/hi/login");
-          }
-        }
-        fetchUser();
-      } catch (error) {
-        console.log("Invalid token", error);
-      }
-    } else {
-      //TO_DO clean up this code
-      router.push("/orgA/hi/login");
-    }
-  }, []);
-
-  if (!user) {
-    return (
-      <div>
-        <Link href="/login">Login</Link>
-      </div>
-    );
+const DynamicCharts = dynamic(() => import("@/components/molecules/Charts"), {
+  loading: () => (
+    <Card>
+      <p>Loading...</p>
+    </Card>
+  ),
+});
+const DynamicIntegrations = dynamic(
+  () => import("@/components/molecules/Integrations"),
+  {
+    loading: () => (
+      <Card>
+        <p>Loading...</p>
+      </Card>
+    ),
   }
+);
+
+const DynamicUsers = dynamic(() => import("@/components/molecules/Users"), {
+  loading: () => (
+    <Card>
+      <p>Loading...</p>
+    </Card>
+  ),
+});
+
+// const PageContent: FC = () => {
+//   const content = useIntlayer("root");
+
+//   return (
+//     <>
+//       <p>{content.getStarted.main}</p>
+//       <code>{content.getStarted.pageLink}</code>
+//     </>
+//   );
+// };
+type DashboardPageProps = {
+  params: {
+    tenant: string;
+    locale: Locales;
+  };
+} & PageProps;
+
+const DashboardPage = async ({ params }: DashboardPageProps) => {
+  const { tenant, locale } = await params;
+  const tenants: Record<string, Tenant> = await loadTenantMap();
 
   return (
-    <div>
-      <h1>Welcome, {user.name}!</h1>
-      <button
-        onClick={() => {
-          sessionStorage.removeItem("token");
-          //TO_DO clean up this code
-          router.push("/orgA/hi/login");
-        }}
-      >
-        Logout
-      </button>
-    </div>
+    <IntlayerServerProvider locale={locale}>
+      <Header tenant={tenant} locale={locale} />
+      <div className="bg-secondary flex flex-col">
+        {tenants[tenant].features?.includes("charts") && (
+          <Card>
+            <DynamicCharts tenant={tenant} locale={locale} />
+          </Card>
+        )}
+
+        {tenants[tenant].features?.includes("integrations") && (
+          <Card>
+            <DynamicIntegrations tenant={tenant} locale={locale} />{" "}
+          </Card>
+        )}
+
+        {tenants[tenant].features?.includes("users") && (
+          <Card>
+            <DynamicUsers tenant={tenant} locale={locale} />
+          </Card>
+        )}
+      </div>
+    </IntlayerServerProvider>
   );
-}
+};
+
+export default DashboardPage;

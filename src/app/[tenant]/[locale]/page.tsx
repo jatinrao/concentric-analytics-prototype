@@ -1,10 +1,10 @@
 import type { FC } from "react";
-import { type NextPageIntlayer, IntlayerClientProvider } from "next-intlayer";
+import { IntlayerClientProvider } from "next-intlayer";
 import { IntlayerServerProvider, useIntlayer } from "next-intlayer/server";
-import { ServerComponentTemplate } from "@/components/atoms/ServerComponentTemplate";
-import { ClientComponentTemplate } from "@/components/atoms/ClientComponentTemplate";
 import { Tenant } from "../../../../tenant";
 import { loadTenantMap } from "../../../../tenantConfig";
+import { Locales } from "intlayer";
+import { PageProps } from "../../../../.next/types/app/layout";
 
 const PageContent: FC = () => {
   const content = useIntlayer("root");
@@ -17,7 +17,14 @@ const PageContent: FC = () => {
   );
 };
 
-const Page: NextPageIntlayer = async ({ params }) => {
+type IntLayerPageProps = {
+  params: {
+    tenant: string;
+    locale: Locales;
+  };
+} & PageProps;
+
+const IntLayerPage = async ({ params }: IntLayerPageProps) => {
   const { tenant, locale } = await params;
   const tenants: Record<string, Tenant> = await loadTenantMap();
   console.log("root page debug", tenant, locale, tenants[tenant]);
@@ -25,13 +32,13 @@ const Page: NextPageIntlayer = async ({ params }) => {
   return (
     <IntlayerServerProvider locale={locale}>
       <PageContent />
-      <ServerComponentTemplate />
+      {/* <ServerComponentTemplate /> */}
 
       <IntlayerClientProvider locale={locale}>
-        <ClientComponentTemplate />
+        {/* <ClientComponentTemplate /> */}
       </IntlayerClientProvider>
     </IntlayerServerProvider>
   );
 };
 
-export default Page;
+export default IntLayerPage;

@@ -1,11 +1,7 @@
 "use client";
 
-import { getLocalizedUrl } from "intlayer";
 import NextLink, { type LinkProps as NextLinkProps } from "next/link";
-import { useLocale } from "next-intlayer";
 import type { PropsWithChildren, FC } from "react";
-
-export const checkIsExternalLink = (href?: string): boolean => /^https?:/; //.test(href ?? "");
 
 /**
  * A custom Link component that adapts the href attribute based on the current locale.
@@ -18,10 +14,9 @@ export const Link: FC<PropsWithChildren<NextLinkProps>> = ({
   children,
   ...props
 }) => {
-  const { locale } = useLocale();
-  const isExternalLink = checkIsExternalLink(href.toString());
+  //   const { locale } = useLocale();
 
-  const hrefI18n: NextLinkProps["href"] = href && !isExternalLink ? href : href;
+  const hrefI18n: NextLinkProps["href"] = href;
 
   return (
     <NextLink className="text-white bg-primary" href={hrefI18n} {...props}>

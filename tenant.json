@@ -6,11 +6,13 @@
     "defaultLocale":"en-US",
     "tenantEmail":"data@org-a.com",
     "isAdmin":false,
-    "logoUrl":"/images/logo-org-a.jpg",
+    "logoUrl":"https://placehold.co/600x400/000000/FFF",
     "theme":{
         "primaryColor":"#ffa450",
         "secondaryColor":"#dfdfdf",
-        "font":"Rubik"
+        "font":"Rubik",
+         "spacing":"4px",
+        "radius":"16px"
     },
     "features":["charts"]
 },
@@ -21,12 +23,14 @@
     "defaultLocale":"en-US",
     "tenantEmail":"data@org-a.com",
     "isAdmin":false,
-    "logoUrl":"/images/logo-org-b.jpg",
+    "logoUrl":"https://placehold.co/600x400/orange/white",
     "theme":{
         "primaryColor":"#dfdfdf",
         "secondaryColor":"#ffa450",
-        "font":"Rubik"
+        "font":"Rubik",
+        "spacing":"2px",
+        "radius":"8px"
     },
-    "features":["charts","new"]
+    "features":["charts","users","notifications"]
 }
 }

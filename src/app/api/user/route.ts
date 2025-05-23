@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { users } from '../../../data/users';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 async function verifyToken(req: NextRequest) {
   const authHeader = req.headers.get('authorization');
@@ -18,12 +18,16 @@ async function verifyToken(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
  const decoded = await verifyToken(req);
+  const { tenant } = await req.json();
   console.log("reached GET endpoint",decoded);
   if (decoded) {
-    const user = users.find(u => u.id === (decoded as any).userId);
+    const user = users.find(u => u.id === (decoded as JwtPayload).userId);
+    if(tenant !== user?.tenant){
+      return NextResponse.json({ success: false, message: 'Forbidden',code:403 }, { status: 403 });
+    }
     console.log(user,decoded);
     if (user) {
-      return NextResponse.json({ success: true,code:200, user: { name: user.name } });
+      return NextResponse.json({ success: true,code:200, user: { name: user.name,tenantId:user.tenant } });
     }
   }
 

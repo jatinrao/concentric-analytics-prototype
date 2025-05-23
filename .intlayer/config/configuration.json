@@ -32,7 +32,7 @@
     "excludedPath": [
       "node_modules"
     ],
-    "watch": true,
+    "watch": false,
     "contentDir": [
       "/Users/jatinrao/Assignments/concentric-analytics-prototype/src"
     ],
