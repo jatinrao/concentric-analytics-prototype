@@ -1,1 +1,32 @@
-[{"key":"root","content":{"title":"tenant","appName":{"nodeType":"translation","translation":{"en":"Concentric Analytics","hi":"कंसेंट्रिक एनालिटिक्स"}},"pageNotFoundErr":{"nodeType":"translation","translation":{"en":"404: Requested page doesn't exist","hi":"404: अनुरोधित पृष्ठ मौजूद नहीं है"}},"getStarted":{"main":{"nodeType":"translation","translation":{"en":"Get started by Loging in...","hi":"लॉग इन करके आरंभ करें..."}}}},"filePath":"/Users/jatinrao/Assignments/concentric-analytics-prototype/src/app/[tenant]/[locale]/page.content.ts"}]
+[
+  {
+    "key": "root",
+    "content": {
+      "title": "tenant",
+      "appName": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Concentric Analytics",
+          "hi": "कंसेंट्रिक एनालिटिक्स"
+        }
+      },
+      "pageNotFoundErr": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "404: Requested page doesn't exist",
+          "hi": "404: अनुरोधित पृष्ठ मौजूद नहीं है"
+        }
+      },
+      "getStarted": {
+        "main": {
+          "nodeType": "translation",
+          "translation": {
+            "en": "Get started by Loging in...",
+            "hi": "लॉग इन करके आरंभ करें..."
+          }
+        }
+      }
+    },
+    "filePath": "/Users/jatinrao/Assignments/concentric-analytics-prototype/src/app/[tenant]/[locale]/page.content.ts"
+  }
+]
