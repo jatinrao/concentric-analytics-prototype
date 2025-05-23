@@ -11,7 +11,7 @@ function getTenantId():string {
 }
 let configPath:string;
 if(process.env.NODE_ENV == "production"){
-    configPath = path.resolve(process.cwd(), 'public/tenant.json');
+    configPath = path.resolve(process.cwd(), '/tenant.json');
 }
 else{
  configPath = path.resolve(process.cwd(), 'public/tenant.json');
