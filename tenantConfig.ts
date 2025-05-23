@@ -9,9 +9,13 @@ import { v4 as uuidv4,  } from 'uuid';
 function getTenantId():string {
     return uuidv4();
 }
-
-
-const configPath = path.resolve(process.cwd(), 'public/tenant.json');
+let configPath:string
+if(process.env.NODE_ENV == "production"){
+    configPath = "https://concentric-analytics-prototype-fwcc.vercel.app/tenant.json"
+}
+else{
+configPath = path.resolve(process.cwd(), 'public/tenant.json');
+}
 
 let cachedConfig: Record<string, Tenant> = {};
 let lastLoadedTime = 0;
