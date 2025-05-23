@@ -13,10 +13,10 @@ export default function Users({
 
   return (
     <div>
-      <h1>Users </h1>
-      <p>
+      <h1 className="text-black">Users </h1>
+      <p className="text-black">
         {" "}
-        {tenant}-{locale}{" "}
+        {tenant}----{locale}{" "}
       </p>
     </div>
   );

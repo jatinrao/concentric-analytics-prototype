@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "chart.js": "^4.4.9",
     "intlayer": "^5.5.0",
     "jsonwebtoken": "^9.0.2",
     "next": "15.3.2",

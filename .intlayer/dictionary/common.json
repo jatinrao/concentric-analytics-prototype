@@ -1,1 +1,51 @@
-{"key":"common","content":{"navigation":{"home":{"nodeType":"translation","translation":{"en":"Home","hi":"होम"}},"dashboard":{"nodeType":"translation","translation":{"en":"Dashboard","hi":"डैशबोर्ड"}},"logout":{"nodeType":"translation","translation":{"en":"Logout","hi":"लॉगआउट"}}},"actions":{"save":{"nodeType":"translation","translation":{"en":"Save","hi":"सहेजें"}},"cancel":{"nodeType":"translation","translation":{"en":"Cancel","hi":"रद्द करें"}},"confirm":{"nodeType":"translation","translation":{"en":"Confirm","hi":"पुष्टि करें"}}}}}
+{
+  "key": "common",
+  "content": {
+    "navigation": {
+      "home": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Home",
+          "hi": "होम"
+        }
+      },
+      "dashboard": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Dashboard",
+          "hi": "डैशबोर्ड"
+        }
+      },
+      "logout": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Logout",
+          "hi": "लॉगआउट"
+        }
+      }
+    },
+    "actions": {
+      "save": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Save",
+          "hi": "सहेजें"
+        }
+      },
+      "cancel": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Cancel",
+          "hi": "रद्द करें"
+        }
+      },
+      "confirm": {
+        "nodeType": "translation",
+        "translation": {
+          "en": "Confirm",
+          "hi": "पुष्टि करें"
+        }
+      }
+    }
+  }
+}
