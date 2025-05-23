@@ -3,12 +3,11 @@ import fs from 'fs/promises';
 import path from 'path';
 import { statSync } from 'fs';
 import { Tenant } from './tenant';
-import { v5 as uuidv5,  } from 'uuid';
+import { v4 as uuidv4,  } from 'uuid';
 
-const T_NAMESPACE = 'tenant-namespace'; 
 
-function getTenantId(name:string):string {
-    return uuidv5(name,T_NAMESPACE);
+function getTenantId():string {
+    return uuidv4();
 }
 
 
@@ -40,6 +39,6 @@ export async function loadTenantMap(): Promise<Record<string, Tenant>> {
 
 export async function loadTenantList(): Promise<Tenant[]> {
   const map = await loadTenantMap();
-  return Object.values(map).map((tenant:Tenant) => ({...tenant,tenantId:getTenantId( tenant.tenantId)}));
+  return Object.values(map).map((tenant:Tenant) => ({...tenant,id:getTenantId()}));
 }
 

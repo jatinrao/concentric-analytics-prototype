@@ -1,27 +1,20 @@
+"use client";
 import { useEffect, useState, type FC } from "react";
 import { useIntlayer } from "next-intlayer";
 import { Tenant } from "../../../tenant";
 import { loadTenantList } from "../../../tenantConfig";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { formatUrl } from "../utils";
 
-export const TenantDropdown: FC = async ({
+export const TenantDropdown: FC = ({
   selected,
   locale,
-}: Record<string, string>) => {
+  tenantList,
+}: Record<string, string | Tenant[]>) => {
   //   const content = useIntlayer("molecules");
-  const tenantList: Tenant[] = await loadTenantList();
-  //   const [tenants, setTenants] = useState<Tenant[]>([]);
-
-  //     async function fetchTenants() {
-  //       try {
-  //         const tenantList: Tenant[] = await loadTenantList();
-  //         setTenants(tenantList);
-  //       } catch (err) {
-  //         console.log("error while fetching tenants", err);
-  //       }
-  //     }
-  //     fetchTenants();
-  //   }
+  const selectedTenant = tenantList.find((t) => t.tenantId == selected);
+  const [isDropdownVisible, setDropdownState] = useState<boolean>(false);
+  const router = useRouter();
 
   return (
     <div>
@@ -29,7 +22,7 @@ export const TenantDropdown: FC = async ({
         id="listbox-label"
         className="block text-sm/6 font-medium text-gray-900"
       >
-        Assigned to
+        Select Tenant
       </label>
       <div className="relative mt-2">
         <button
@@ -38,54 +31,19 @@ export const TenantDropdown: FC = async ({
           aria-haspopup="listbox"
           aria-expanded="true"
           aria-labelledby="listbox-label"
+          onClick={(e) => {
+            setDropdownState((state) => !state);
+          }}
         >
           <span className="col-start-1 row-start-1 flex items-center gap-3 pr-6">
             <img
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
+              src={selectedTenant?.logoUrl}
+              alt={"logo" + selectedTenant?.tenantUserName}
               className="size-5 shrink-0 rounded-full"
             />
-            <span className="block truncate">Tom Cook</span>
+            <span className="block truncate">{selectedTenant?.tenantName}</span>
           </span>
-          <svg
-            className="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4"
-            viewBox="0 0 16 16"
-            fill="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </button>
-
-        <ul
-          className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden sm:text-sm"
-          tabindex="-1"
-          role="listbox"
-          aria-labelledby="listbox-label"
-          aria-activedescendant="listbox-option-3"
-        >
-          <li
-            className="relative cursor-default py-2 pr-9 pl-3 text-gray-900 select-none"
-            id="listbox-option-0"
-            role="option"
-          >
-            <div className="flex items-center">
-              <img
-                src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                alt=""
-                className="size-5 shrink-0 rounded-full"
-              />
-
-              <span className="ml-3 block truncate font-normal">
-                Wade Cooper
-              </span>
-            </div>
-
+          {selectedTenant && (
             <span className="absolute inset-y-0 right-0 flex items-center pr-4 text-indigo-600">
               <svg
                 className="size-5"
@@ -101,8 +59,65 @@ export const TenantDropdown: FC = async ({
                 />
               </svg>
             </span>
-          </li>
-        </ul>
+          )}
+          <svg
+            className="col-start-1 row-start-1 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+            viewBox="0 0 16 16"
+            fill="currentColor"
+            aria-hidden="true"
+            data-slot="icon"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.22 10.22a.75.75 0 0 1 1.06 0L8 11.94l1.72-1.72a.75.75 0 1 1 1.06 1.06l-2.25 2.25a.75.75 0 0 1-1.06 0l-2.25-2.25a.75.75 0 0 1 0-1.06ZM10.78 5.78a.75.75 0 0 1-1.06 0L8 4.06 6.28 5.78a.75.75 0 0 1-1.06-1.06l2.25-2.25a.75.75 0 0 1 1.06 0l2.25 2.25a.75.75 0 0 1 0 1.06Z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </button>
+
+        {isDropdownVisible && (
+          <ul
+            className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-hidden sm:text-sm"
+            tabIndex="-1"
+            role="listbox"
+            aria-labelledby="listbox-label"
+            aria-activedescendant="listbox-option-3"
+          >
+            {tenantList.map((tenant: Tenant, idx: number) => {
+              return (
+                <li
+                  key={tenant.id}
+                  className="relative cursor-pointer py-2 pr-9 pl-3 text-gray-900 select-none z-10 hover:bg-grey-200"
+                  id="listbox-option-0"
+                  role="option"
+                  data-tenant={tenant.tenantId}
+                  onClick={(event) => {
+                    console.log(event.currentTarget);
+                    router.push(
+                      formatUrl(
+                        event.currentTarget?.dataset?.tenant as string,
+                        locale as string,
+                        "/login"
+                      )
+                    );
+                  }}
+                >
+                  <div className="flex items-center z-1">
+                    <img
+                      src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                      alt={"logo-" + tenant.tenantUserName}
+                      className="size-5 shrink-0 rounded-full"
+                    />
+
+                    <span className="ml-3 block truncate font-normal">
+                      {tenant.tenantName}
+                    </span>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </div>
   );

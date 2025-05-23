@@ -23,8 +23,8 @@
     "isAdmin":false,
     "logoUrl":"/images/logo-org-b.jpg",
     "theme":{
-        "primaryColor":"#ffa450",
-        "secondaryColor":"#dfdfdf",
+        "primaryColor":"#dfdfdf",
+        "secondaryColor":"#ffa450",
         "font":"Rubik"
     },
     "features":["charts","new"]

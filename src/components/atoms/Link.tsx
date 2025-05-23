@@ -24,7 +24,7 @@ export const Link: FC<PropsWithChildren<NextLinkProps>> = ({
   const hrefI18n: NextLinkProps["href"] = href && !isExternalLink ? href : href;
 
   return (
-    <NextLink href={hrefI18n} {...props}>
+    <NextLink className="text-white bg-primary" href={hrefI18n} {...props}>
       {children}
     </NextLink>
   );
