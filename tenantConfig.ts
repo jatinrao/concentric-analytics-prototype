@@ -11,7 +11,7 @@ function getTenantId():string {
 }
 
 
-const configPath = path.resolve(process.cwd(), 'tenant.json');
+const configPath = path.resolve(process.cwd(), 'public/tenant.json');
 
 let cachedConfig: Record<string, Tenant> = {};
 let lastLoadedTime = 0;
