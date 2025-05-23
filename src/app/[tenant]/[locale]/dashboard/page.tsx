@@ -5,7 +5,6 @@ import { Tenant } from "../../../../../tenant";
 import { Card } from "@/components/atoms/Card";
 import dynamic from "next/dynamic";
 import { Locales } from "intlayer";
-import { PageProps } from "../../../../../.next/types/app/layout";
 
 const DynamicCharts = dynamic(() => import("@/components/molecules/Charts"), {
   loading: () => (
@@ -14,6 +13,7 @@ const DynamicCharts = dynamic(() => import("@/components/molecules/Charts"), {
     </Card>
   ),
 });
+
 const DynamicIntegrations = dynamic(
   () => import("@/components/molecules/Integrations"),
   {
@@ -33,14 +33,16 @@ const DynamicUsers = dynamic(() => import("@/components/molecules/Users"), {
   ),
 });
 
-type DashboardPageProps = {
-  params: {
-    tenant: string;
-    locale: Locales;
-  };
-} & PageProps;
+export type PageProps = {
+  params: Promise<{ [key: string]: string }>;
+};
 
-const DashboardPage = async ({ params }: DashboardPageProps) => {
+const DashboardPage = async ({
+  params,
+}: {
+  params: Promise<{ tenant: string; locale: Locales }>;
+}) => {
+  // Await the params since they're now a Promise in Next.js 15
   const { tenant, locale } = await params;
   const tenants: Record<string, Tenant> = await loadTenantMap();
 
@@ -56,7 +58,7 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
 
         {tenants[tenant].features?.includes("integrations") && (
           <Card>
-            <DynamicIntegrations tenant={tenant} locale={locale} />{" "}
+            <DynamicIntegrations tenant={tenant} locale={locale} />
           </Card>
         )}
 

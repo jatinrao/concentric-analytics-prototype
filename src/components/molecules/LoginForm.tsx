@@ -15,6 +15,7 @@ function LoginForm(params: Params) {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   console.log("params:", tenant, locale);
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { username, password } = Object.fromEntries(

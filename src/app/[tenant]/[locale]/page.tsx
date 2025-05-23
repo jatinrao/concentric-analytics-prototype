@@ -4,7 +4,6 @@ import { IntlayerServerProvider, useIntlayer } from "next-intlayer/server";
 import { Tenant } from "../../../../tenant";
 import { loadTenantMap } from "../../../../tenantConfig";
 import { Locales } from "intlayer";
-import { PageProps } from "../../../../.next/types/app/layout";
 
 const PageContent: FC = () => {
   const content = useIntlayer("root");
@@ -17,14 +16,16 @@ const PageContent: FC = () => {
   );
 };
 
+// Update the type to make params a Promise
 type IntLayerPageProps = {
-  params: {
+  params: Promise<{
     tenant: string;
     locale: Locales;
-  };
-} & PageProps;
+  }>;
+};
 
 const IntLayerPage = async ({ params }: IntLayerPageProps) => {
+  // Await the params since they're now a Promise in Next.js 15
   const { tenant, locale } = await params;
   const tenants: Record<string, Tenant> = await loadTenantMap();
   console.log("root page debug", tenant, locale, tenants[tenant]);

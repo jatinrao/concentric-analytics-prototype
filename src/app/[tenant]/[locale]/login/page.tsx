@@ -3,18 +3,20 @@ import { loadTenantList, loadTenantMap } from "../../../../../tenantConfig";
 import { Tenant } from "../../../../../tenant";
 import { TenantDropdown } from "@/components/molecules/TenantDropdown";
 import { IntlayerClientProvider } from "next-intlayer";
-import ThemeToggle from "@/app/ThemeToggle";
+import ThemeToggle from "@/components/ThemeToggle";
 import { LocaleSwitcher } from "@/components/atoms/LocaleSwitcher";
 import { Locales } from "intlayer";
-import { PageProps } from "../../../../../.next/types/app/layout";
+
+// Update the type to make params a Promise
 type LoginPageProps = {
-  params: {
+  params: Promise<{
     tenant: string;
     locale: Locales;
-  };
-} & PageProps;
+  }>;
+};
 
 const LoginPage = async ({ params }: LoginPageProps) => {
+  // Await the params since they're now a Promise in Next.js 15
   const { tenant, locale } = await params;
   const tenants: Record<string, Tenant> = await loadTenantMap();
   const tenantList: Tenant[] = await loadTenantList();
