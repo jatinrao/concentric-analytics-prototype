@@ -7,10 +7,11 @@ import { formatUrl } from "../utils";
 type Params = {
   tenant: string;
   locale: string;
+  translations: Record<string, string>;
 };
 
 function LoginForm(params: Params) {
-  const { tenant, locale } = params;
+  const { tenant, locale, translations } = params;
   //   const content = useIntlayer("root");
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -42,14 +43,13 @@ function LoginForm(params: Params) {
 
   return (
     <section>
-      <h3 className="text-black m-auto">{"content.getStarted.main"}</h3>
       <form onSubmit={handleSubmit}>
         <label>
           <input
             type="text"
             className="grid mt-4 w-full rounded-elem cursor-default grid-cols-1  bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
             name="username"
-            placeholder="User name"
+            placeholder={translations.username}
             required
           />
         </label>
@@ -58,7 +58,7 @@ function LoginForm(params: Params) {
           <input
             className="grid w-full rounded-elem cursor-default grid-cols-1  bg-white py-1.5 pr-2 pl-3 text-left text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-primary sm:text-sm/6"
             type="password"
-            placeholder="Password"
+            placeholder={translations.password}
             name="password"
             required
           />
@@ -68,7 +68,7 @@ function LoginForm(params: Params) {
           className="bg-primary w-full py-1.5 pr-2 pl-3 rounded-elem"
           type="submit"
         >
-          Login
+          {translations.submitButton}
         </button>
         {error && <div>{error}</div>}
       </form>
