@@ -22,7 +22,17 @@ let lastLoadedTime = 0;
 
 export async function loadTenantMap(): Promise<Record<string, Tenant>> {
   try {
-    
+    console.log(">> Runtime check:");
+console.log("  process.cwd():", process.cwd());
+console.log("  NODE_ENV:", process.env.NODE_ENV);
+console.log("  configPath:", configPath);
+
+try {
+  const exists = statSync(configPath);
+  console.log("  config file found:", exists.isFile());
+} catch (err) {
+  console.error("  🔥 File not found or error:", err.message);
+}
     const { mtimeMs } = statSync(configPath);
 
     if (mtimeMs > lastLoadedTime) {
