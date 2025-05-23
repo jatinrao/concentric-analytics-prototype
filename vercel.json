@@ -1,4 +1,14 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "public": true
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/orgA/en-US"
+    }
+  ],
+  "routes": [
+    {
+      "src": "^/([^/]+)/([^/]+)/?$",
+      "dest": "/$1/$2"
+    }
+  ]
 }
