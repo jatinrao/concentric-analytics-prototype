@@ -1,50 +1,20 @@
 
-import fs from 'fs/promises';
-import path from 'path';
-import { statSync } from 'fs';
 import { Tenant } from './tenant';
-import { v4 as uuidv4,  } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+import { tenantData } from '@/config/tenant';
+const tenantMap: Record<string, Tenant> = tenantData;
 
-
-function getTenantId():string {
-    return uuidv4();
+function getTenantId(): string {
+  return uuidv4();
 }
-
-let  configPath:string ;
-if(process.env.NODE_ENV === "production"){
- configPath = path.resolve('/tenant.json');
-}
-else{
-    
-configPath = path.resolve(process.cwd(), 'public/tenant.json');
-
-}
-let cachedConfig: Record<string, Tenant> = {};
-let lastLoadedTime = 0;
 
 export async function loadTenantMap(): Promise<Record<string, Tenant>> {
-  try {
-    
-    const { mtimeMs } = statSync(configPath);
-
-    if (mtimeMs > lastLoadedTime) {
-
-      const raw = await fs.readFile(configPath, 'utf-8');
-      const parsed = JSON.parse(raw) satisfies Record<string, Tenant>;
-
-      cachedConfig = parsed;
-      lastLoadedTime = mtimeMs;
-    }
-
-    return cachedConfig;
-  } catch (e) {
-    console.error('Failed to load tenant config:', e);
-    return {};
-  }
+  return tenantMap;
 }
 
 export async function loadTenantList(): Promise<Tenant[]> {
-  const map = await loadTenantMap();
-  return Object.values(map).map((tenant:Tenant) => ({...tenant,id:getTenantId( tenant.tenantId)}));
+  return Object.values(tenantMap).map((tenant) => ({
+    ...tenant,
+    id: getTenantId(),
+  }));
 }
-
