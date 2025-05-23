@@ -10,9 +10,15 @@ function getTenantId():string {
     return uuidv4();
 }
 
+let  configPath:string ;
+if(process.env.NODE_ENV === "production"){
+ configPath = path.resolve('/tenant.json');
+}
+else{
+    
+configPath = path.resolve(process.cwd(), 'public/tenant.json');
 
-const configPath = path.resolve(process.cwd(), 'src/tenant.json');
-
+}
 let cachedConfig: Record<string, Tenant> = {};
 let lastLoadedTime = 0;
 
@@ -39,6 +45,6 @@ export async function loadTenantMap(): Promise<Record<string, Tenant>> {
 
 export async function loadTenantList(): Promise<Tenant[]> {
   const map = await loadTenantMap();
-  return Object.values(map).map((tenant:Tenant) => ({...tenant,id:getTenantId()}));
+  return Object.values(map).map((tenant:Tenant) => ({...tenant,id:getTenantId( tenant.tenantId)}));
 }
 
