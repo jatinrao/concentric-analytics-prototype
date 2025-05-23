@@ -1,9 +1,9 @@
 "use client";
 
-import { getLocaleName, getLocalizedUrl } from "intlayer";
-import Link from "next/link";
-import { formatUrl } from "../utils";
-import { useRouter } from "next/navigation";
+// import { getLocaleName, getLocalizedUrl } from "intlayer";
+// import Link from "next/link";
+// import { formatUrl } from "../utils";
+// import { useRouter } from "next/navigation";
 
 // Commented out the problematic import
 // import { useLocale } from 'intlayer';
@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 //   };
 // };
 
-export const LocaleSwitcher = ({ tenant }: { tenant: string }) => {
+export const LocaleSwitcher = ({}: { tenant: string }) => {
   //   const { locale, setLocale } =
   //     useLocale();
   //   const router = useRouter();

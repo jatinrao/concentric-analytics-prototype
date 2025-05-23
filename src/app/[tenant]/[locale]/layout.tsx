@@ -1,6 +1,7 @@
 // import type { NextLayoutIntlayer } from "next-intlayer";
 // import { getHTMLTextDir } from "intlayer";
 import { Inter } from "next/font/google";
+import { PropsWithChildren } from "react";
 
 // export { generateStaticParams } from "next-intlayer";
 
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
   ];
 }
 
-const LocaleLayout = async ({ children, params }) => {
+const LocaleLayout = async ({ children }: PropsWithChildren) => {
   // const { locale } = await params;
 
   return <div className={`${inter.className}`}>{children}</div>;
